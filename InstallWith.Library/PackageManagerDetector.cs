@@ -21,7 +21,6 @@ namespace InstallWith.Library
            if(OperatingSystem.IsLinux())
             {
                 LinuxOsRelease osRelease = LinuxAnalyzer.GetLinuxDistributionInformation();
-
                 LinuxDistroBase distroBase = LinuxAnalyzer.GetDistroBase(osRelease);
 
                 switch (distroBase)
