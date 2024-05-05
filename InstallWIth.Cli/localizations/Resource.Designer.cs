@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace InstallWIth.Cli.localizations {
+namespace InstallWith.Cli.localizations {
     using System;
     
     
@@ -123,11 +123,20 @@ namespace InstallWIth.Cli.localizations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Updates the specified sources or if no source is specified, updates all supported sources..
         /// </summary>
         internal static string Command_Update_Description {
             get {
                 return ResourceManager.GetString("Command.Update.Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Command_Upgrade_Description {
+            get {
+                return ResourceManager.GetString("Command.Upgrade.Description", resourceCulture);
             }
         }
         

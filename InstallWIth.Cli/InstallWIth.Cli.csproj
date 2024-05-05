@@ -5,10 +5,14 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <AssemblyName>installwith</AssemblyName>
+    <RootNamespace>InstallWith.Cli</RootNamespace>
+    <IsPackable>false</IsPackable>
+    <Authors>AlastairLundy</Authors>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AlastairLundy.Extensions.System" Version="4.0.0-preview.1" />
+    <PackageReference Include="AlastairLundy.Extensions.System" Version="4.0.0" />
     <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="4.1.1" />
   </ItemGroup>
 
