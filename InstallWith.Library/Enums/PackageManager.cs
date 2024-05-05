@@ -27,6 +27,7 @@ namespace InstallWith.Library.Enums
         Homebrew,
         Flatpak,
         Snap,
+        Scoop,
         Chocolatey,
         Winget,
         MacPorts,
