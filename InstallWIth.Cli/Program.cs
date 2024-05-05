@@ -18,7 +18,9 @@ using System.Reflection;
 
 using AlastairLundy.Extensions.System.AssemblyExtensions;
 using AlastairLundy.Extensions.System.VersionExtensions;
+
 using InstallWith.Cli.localizations;
+
 using McMaster.Extensions.CommandLineUtils;
 
 namespace InstallWith.Cli
