@@ -33,12 +33,10 @@ public static class Snaps
     [SupportedOSPlatform("freebsd")]
     public static IEnumerable<AppModel> GetInstalled()
     {
-        List<AppModel> apps = new List<AppModel>();
-
-        if (OperatingSystem.IsLinux() || OperatingSystem.IsFreeBSD())
+        if (IsSnapSupported() && IsSnapInstalled())
         {
-            if (IsSnapInstalled())
-            {
+            List<AppModel> apps = new List<AppModel>();
+
                 string[] snapResults = CommandRunner.RunCommandOnLinux(
                     $"ls {Path.DirectorySeparatorChar}snap{Path.DirectorySeparatorChar}bin").Split(' ');
 
@@ -49,13 +47,14 @@ public static class Snaps
                 }
 
                 return apps.ToArray();
-            }
-
-            apps.Clear();
-            return apps.ToArray();
         }
 
         throw new PlatformNotSupportedException();
+    }
+
+    public static bool IsSnapSupported()
+    {
+        return OperatingSystem.IsLinux() || OperatingSystem.IsFreeBSD();
     }
 
     /// <summary>
