@@ -117,7 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Version.Description" xml:space="preserve">
+  <data name="Command.Version.Description" xml:space="preserve">
+    <value>The version of InstallWith being used.</value>
+  </data>
+  <data name="App.Name" xml:space="preserve">
+    <value>InstallWith</value>
+  </data>
+  <data name="Command.License.Description" xml:space="preserve">
+    <value>Displays the project's license</value>
+  </data>
+  <data name="App.Description" xml:space="preserve">
+    <value>Choose what package manager/app acquisition method to use to install, modify, remove, or update an app.</value>
+  </data>
+  <data name="Command.Install.Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Command.Update.Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Command.Remove.Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Command.Search.Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Command.List.Description" xml:space="preserve">
     <value />
   </data>
 </root>

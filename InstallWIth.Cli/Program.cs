@@ -18,7 +18,7 @@ using System.Reflection;
 
 using AlastairLundy.Extensions.System.AssemblyExtensions;
 using AlastairLundy.Extensions.System.VersionExtensions;
-
+using InstallWIth.Cli.localizations;
 using McMaster.Extensions.CommandLineUtils;
 
 namespace InstallWIth.Cli
@@ -29,13 +29,16 @@ namespace InstallWIth.Cli
         {
             CommandLineApplication application = new CommandLineApplication();
 
+            application.Name = Resource.App_Name;
+            application.Description = Resource.App_Description;
+            
             var help = application.HelpOption("-h|--help");
-            var version = application.Option("-v|--version", localizations.Resource.Version_Description, CommandOptionType.NoValue);
-
+            var version = application.Option("-v|--version", localizations.Resource.Command_Version_Description, CommandOptionType.NoValue);
+            var license = application.Option("-l|--license", Resource.Command_License_Description, CommandOptionType.NoValue);
 
             application.Command("install", installCommand =>
             {
-
+                installCommand.Description = Resource.Command_Install_Description;
 
                 installCommand.OnExecute(() =>
                 {
@@ -47,7 +50,7 @@ namespace InstallWIth.Cli
 
             application.Command("remove", removeCommand =>
             {
-
+                removeCommand.Description = Resource.Command_Remove_Description;
 
                 removeCommand.OnExecute(() =>
                 {
@@ -60,7 +63,7 @@ namespace InstallWIth.Cli
 
             application.Command("update", updateCommand =>
             {
-
+                updateCommand.Description = Resource.Command_Update_Description;
 
                 updateCommand.OnExecute(() =>
                 {
@@ -72,7 +75,7 @@ namespace InstallWIth.Cli
 
             application.Command("search", searchCommand =>
             {
-
+                searchCommand.Description = Resource.Command_Search_Description;
 
 
 
@@ -81,7 +84,7 @@ namespace InstallWIth.Cli
 
             application.Command("list", listCommand =>
             {
-
+                listCommand.Description = Resource.Command_List_Description;
 
 
 
@@ -96,12 +99,13 @@ namespace InstallWIth.Cli
                 }
                 if(version.HasValue())
                 {
-                    string appName = AssemblyGetProgramName.GetProjectName(Assembly.GetExecutingAssembly());
-                    string version = AssemblyGetProgramVersion.GetProjectVersion(Assembly.GetExecutingAssembly()).GetFriendlyVersionToString();
-
-                    Console.WriteLine($"{appName} {version}");
+                    Console.WriteLine($@"{Resource.App_Name} {Assembly.GetExecutingAssembly().GetProjectVersion().GetFriendlyVersionToString()}");
                 }
 
+                if (license.HasValue())
+                {
+                    
+                }
             });
 
            return application.Execute(args);
