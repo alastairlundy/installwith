@@ -133,7 +133,7 @@
     <value />
   </data>
   <data name="Command.Update.Description" xml:space="preserve">
-    <value />
+    <value>Updates the specified sources or if no source is specified, updates all supported sources.</value>
   </data>
   <data name="Command.Remove.Description" xml:space="preserve">
     <value />
@@ -142,6 +142,9 @@
     <value />
   </data>
   <data name="Command.List.Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Command.Upgrade.Description" xml:space="preserve">
     <value />
   </data>
 </root>
