@@ -7,8 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PlatformKit" Version="4.0.0-rc.1" />
-    <PackageReference Include="PlatformKit.Software" Version="1.0.0-alpha.2" />
+    <PackageReference Include="PlatformKit" Version="4.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Helpers\" />
   </ItemGroup>
 
 </Project>
