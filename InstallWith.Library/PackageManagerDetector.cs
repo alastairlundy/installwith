@@ -15,21 +15,27 @@
  */
 
 using InstallWith.Library.Enums;
+using InstallWith.Library.PackageManagers;
 
 using PlatformKit.Linux;
 using PlatformKit.Linux.Enums;
-using PlatformKit.Software;
 using PlatformKit.Windows;
+// ReSharper disable RedundantIfElseBlock
 
 namespace InstallWith.Library
 {
     public class PackageManagerDetector
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="PlatformNotSupportedException"></exception>
         public static PackageManager GetDefaultForPlatform()
         {
            if(OperatingSystem.IsLinux())
-            {
+           {
                 LinuxOsRelease osRelease = LinuxAnalyzer.GetLinuxDistributionInformation();
                 LinuxDistroBase distroBase = LinuxAnalyzer.GetDistroBase(osRelease);
 
@@ -53,16 +59,16 @@ namespace InstallWith.Library
                     case LinuxDistroBase.Fedora or LinuxDistroBase.RHEL:
                         return PackageManager.DNF;
                     default:
-                        if(InstalledFlatpaks.IsFlatpakInstalled())
+                        if(Flatpaks.IsFlatpakInstalled())
                         {
                             return PackageManager.Flatpak;
                         }
 
-                        if(InstalledSnaps.IsSnapInstalled())
+                        if(Snaps.IsSnapInstalled())
                         {
                             return PackageManager.Snap;
                         }
-                        if(InstalledBrewCasks.IsHomeBrewInstalled())
+                        if(HomeBrew.IsHomeBrewInstalled())
                         {
                             return PackageManager.Homebrew;
                         }
@@ -70,10 +76,10 @@ namespace InstallWith.Library
                         return PackageManager.NotDetected;
                 }
 
-            }
+           }
            if(OperatingSystem.IsMacOS() || OperatingSystem.IsMacCatalyst()) 
-            {
-                if(InstalledBrewCasks.IsHomeBrewInstalled()) 
+           {
+                if(HomeBrew.IsHomeBrewInstalled()) 
                 {
                     return PackageManager.Homebrew;
                 }
@@ -82,19 +88,23 @@ namespace InstallWith.Library
 
 
                 return PackageManager.NotSupported;
-            }
-            if (OperatingSystem.IsWindows())
-            {
+           }
+           if (OperatingSystem.IsWindows())
+           {
                 if (WindowsAnalyzer.IsAtLeastVersion(WindowsVersion.Win10_v1809) && WindowsAnalyzer.GetWindowsEdition() != WindowsEdition.Server)
                 {
                     return PackageManager.Winget;
                 }
 
-                
+                if (Chocolatey.IsChocolateySupported() && Chocolatey.IsChocolateyInstalled())
+                {
+                    return PackageManager.Chocolatey;
+                }
 
                 return PackageManager.NotSupported;
-            }
-            throw new PlatformNotSupportedException();
+           }
+
+           throw new PlatformNotSupportedException();
         }
     }
 }
