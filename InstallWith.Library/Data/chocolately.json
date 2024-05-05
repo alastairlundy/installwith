@@ -1,0 +1,13 @@
+{
+  "ask_for_sudo": false,
+  "sudo_is_required": false,
+  "command_name": "choco",
+  "check_update":"upgrade",
+  "upgrade": "upgrade",
+  "install": "install",
+  "remove": "uninstall",
+  "auto_remove": null,
+  "purge": "purge",
+  "search":"search",
+  "list": "list"
+}

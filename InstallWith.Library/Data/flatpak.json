@@ -1,0 +1,13 @@
+{
+  "ask_for_sudo": false,
+  "sudo_is_required": false,
+  "command_name": "flatpak",
+  "check_update": "update",
+  "install": "install",
+  "upgrade": "update",
+  "remove": "remove",
+  "auto_remove": null,
+  "purge": "purge",
+  "search":"search",
+  "list": "list"
+}

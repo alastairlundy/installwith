@@ -1,0 +1,14 @@
+{
+  "ask_for_sudo": true,
+  "sudo_is_required": true,
+  "command_name": "apt",
+  "check_update":"update",
+  "upgrade": "upgrade",
+  "install": "install",
+  "remove": "remove",
+  "auto_remove": "autoremove",
+  "purge": "purge",
+  "search":"search",
+  "distro_upgrade": "dist-upgrade",
+  "list": "list"
+}

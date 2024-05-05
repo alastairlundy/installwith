@@ -1,0 +1,13 @@
+{
+  "ask_for_sudo": true,
+  "sudo_is_required": true,
+  "command_name": "dnf",
+  "check_update": "check-update",
+  "install": "install",
+  "upgrade": "upgrade",
+  "remove": "remove",
+  "auto_remove": "autoremove",
+  "purge": "purge",
+  "search":"search",
+  "distro_upgrade": "system-upgrade"
+}

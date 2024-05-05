@@ -1,0 +1,13 @@
+{
+  "ask_for_sudo": false,
+  "sudo_is_required": true,
+  "command_name": "snap",
+  "check_update": "refresh",
+  "install": "install",
+  "upgrade": "refresh",
+  "remove": "remove",
+  "auto_remove": null,
+  "purge": "purge",
+  "search":"search",
+  "list": "list"
+}
