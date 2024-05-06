@@ -20,7 +20,15 @@
     <ProjectReference Include="..\InstallWith.Library\InstallWith.Library.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
+	<ItemGroup>
+		<Content Include="..\LICENSE.txt">
+			<Link>LICENSE.txt</Link>
+			<PackagePath>LICENSE.txt</PackagePath>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
     <Compile Update="localizations\Resource.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
