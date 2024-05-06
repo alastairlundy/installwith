@@ -12,7 +12,7 @@ namespace InstallWith.Library
 {
     public class Commands
     {
-        internal static string GetPackageManagerSyntax(string key)
+        internal bool CommandIncludesInstallWith(string packageName)
         {
 
         }
