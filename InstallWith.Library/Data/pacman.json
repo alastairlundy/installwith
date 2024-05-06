@@ -1,0 +1,15 @@
+{
+  "ask_for_sudo": false,
+  "sudo_is_required": false,
+  "command_name": "pacman",
+  "check_update": "-Sy",
+  "upgrade_all": "-Syu",
+  "upgrade": "-Syu",
+  "install": "-S",
+  "remove": "-R",
+  "auto_remove": "-Rs",
+  "purge": "-Rns",
+  "search": "-Ss",
+  "list": "list",
+  "list_updates": "-Qu"
+}

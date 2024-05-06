@@ -5,9 +5,12 @@
   "check_update": "check-update",
   "install": "install",
   "upgrade": "upgrade",
-  "remove": "remove",
+  "remove": "remove --nodeps",
   "auto_remove": "autoremove",
-  "purge": "purge",
-  "search":"search",
-  "distro_upgrade": "system-upgrade"
+  "purge": "erase",
+  "search": "search",
+  "distro_upgrade": "system-upgrade",
+  "list": "",
+  "list_updates": "check-update"
+
 }

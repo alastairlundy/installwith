@@ -7,7 +7,7 @@
   "upgrade": "update",
   "remove": "remove",
   "auto_remove": null,
-  "purge": "purge",
+  "purge": null,
   "search":"search",
   "list": "list"
 }

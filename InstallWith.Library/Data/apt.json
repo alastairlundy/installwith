@@ -10,5 +10,6 @@
   "purge": "purge",
   "search":"search",
   "distro_upgrade": "dist-upgrade",
-  "list": "list"
+  "list": "list",
+  "list_updates": "list --upgradable"
 }

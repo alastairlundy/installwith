@@ -1,15 +1,15 @@
 {
   "ask_for_sudo": false,
   "sudo_is_required": false,
-  "command_name": "winget",
-  "check_update": "winget list > NUL ",
+  "command_name": "brew",
+  "check_update": "update",
   "upgrade": "upgrade",
-  "upgrade_all": "upgrade --all",
+  "upgrade_all": "upgrade",
   "install": "install",
   "remove": "uninstall",
-  "auto_remove": null,
+  "auto_remove": "autoremove && brew cleanup",
   "purge": "purge",
   "search": "search",
   "list": "list",
-  "list_updates": "list upgrade"
+   "list_updates": "outdated"
 }
