@@ -106,7 +106,12 @@ namespace InstallWith.Cli
 
                 if (license.HasValue())
                 {
-                    
+                    foreach(string line in File.ReadAllLines($"{Environment.CurrentDirectory}{Path.DirectorySeparatorChar}LICENSE.txt"))
+                    {
+                        Console.WriteLine(line);
+                    }
+
+                    Console.WriteLine();
                 }
             });
 
