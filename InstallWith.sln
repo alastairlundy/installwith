@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstallWith.Cli", "InstallWIth.Cli\InstallWith.Cli.csproj", "{D591FCFA-B67F-4F80-B505-4B2C4261CBC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstallWith.Shared", "InstallWith.Shared\InstallWith.Shared.csproj", "{C196DBA6-5B8E-4AD6-B4BF-3CE905A18B06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstallWith.Library", "InstallWith.Shared\InstallWith.Library.csproj", "{C196DBA6-5B8E-4AD6-B4BF-3CE905A18B06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

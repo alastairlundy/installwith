@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="PlatformKit.Software" Version="1.0.0-alpha.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Data\apt.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
