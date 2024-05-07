@@ -16,8 +16,10 @@
 
 using System.Text.Json;
 
-using InstallWith.Library.Enums;
-using InstallWith.Library.PackageManagers;
+using PlatformKit.Software;
+using PlatformKit.Software.Enums;
+using PlatformKit.Software.PackageManagers;
+
 
 namespace InstallWith.Library;
 
@@ -116,10 +118,7 @@ public class Commands
 
     public static void UpdatePackageSources(PackageManager packageManager)
     {
-        if(packageManager == PackageManager.Snap)
-        {
-
-        }
+       
     }
 
     public static void UpgradePackage(PackageManager packageManager, string packageName)
