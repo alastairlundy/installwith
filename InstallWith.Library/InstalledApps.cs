@@ -60,11 +60,11 @@ public class InstalledApps
         }
         else if (OperatingSystem.IsMacOS())
         {
-            return InstalledMacApps.GetOnMac();
+            return InstalledMacApps.GetInstalled();
         }
         else if (OperatingSystem.IsLinux() || OperatingSystem.IsFreeBSD())
         {
-            return InstalledLinuxApps.GetOnLinux(true);
+            return InstalledLinuxApps.GetInstalled(true);
         }
 
         throw new PlatformNotSupportedException();

@@ -27,7 +27,7 @@ public class InstalledLinuxApps
 
     // ReSharper disable once IdentifierTypo
     [SupportedOSPlatform("linux")]
-    public static IEnumerable<AppModel> GetOnLinux(bool includeBrewCasks = true)
+    public static IEnumerable<AppModel> GetInstalled(bool includeBrewCasks = true)
     {
         if (OperatingSystem.IsLinux())
         {

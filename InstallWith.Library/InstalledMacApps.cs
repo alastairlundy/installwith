@@ -25,8 +25,9 @@ namespace InstallWith.Library;
 
 public class InstalledMacApps
 {
+  
     [SupportedOSPlatform("macos")]
-    public static IEnumerable<AppModel> GetOnMac()
+    public static IEnumerable<AppModel> GetInstalled()
     {
         if (OperatingSystem.IsMacOS())
         {
