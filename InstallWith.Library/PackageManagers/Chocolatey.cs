@@ -110,6 +110,10 @@ public class Chocolatey
         throw new PlatformNotSupportedException();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     public static bool IsChocolateySupported()
     {
         return OperatingSystem.IsWindows();

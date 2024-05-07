@@ -22,89 +22,88 @@ using PlatformKit.Linux.Enums;
 using PlatformKit.Windows;
 // ReSharper disable RedundantIfElseBlock
 
-namespace InstallWith.Library
+namespace InstallWith.Library;
+
+public class PackageManagerDetector
 {
-    public class PackageManagerDetector
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="PlatformNotSupportedException"></exception>
+    public static PackageManager GetDefaultForPlatform()
     {
+       if(OperatingSystem.IsLinux())
+       {
+            LinuxOsRelease osRelease = LinuxAnalyzer.GetLinuxDistributionInformation();
+            LinuxDistroBase distroBase = LinuxAnalyzer.GetDistroBase(osRelease);
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        /// <exception cref="PlatformNotSupportedException"></exception>
-        public static PackageManager GetDefaultForPlatform()
-        {
-           if(OperatingSystem.IsLinux())
-           {
-                LinuxOsRelease osRelease = LinuxAnalyzer.GetLinuxDistributionInformation();
-                LinuxDistroBase distroBase = LinuxAnalyzer.GetDistroBase(osRelease);
+            switch (distroBase)
+            {
+                case LinuxDistroBase.Arch or LinuxDistroBase.Manjaro:
+                    return PackageManager.Pacman;
+                case LinuxDistroBase.Debian:
+                    return PackageManager.APT;
+                case LinuxDistroBase.Ubuntu:
+                    string osName = osRelease.PrettyName.ToLower();
 
-                switch (distroBase)
-                {
-                    case LinuxDistroBase.Arch or LinuxDistroBase.Manjaro:
-                        return PackageManager.Pacman;
-                    case LinuxDistroBase.Debian:
+                    if (osName.Contains("buntu"))
+                    {
+                        return PackageManager.Snap;
+                    }
+                    else
+                    {
                         return PackageManager.APT;
-                    case LinuxDistroBase.Ubuntu:
-                        string osName = osRelease.PrettyName.ToLower();
+                    }
+                case LinuxDistroBase.Fedora or LinuxDistroBase.RHEL:
+                    return PackageManager.DNF;
+                default:
+                    if(Flatpaks.IsFlatpakInstalled())
+                    {
+                        return PackageManager.Flatpak;
+                    }
 
-                        if (osName.Contains("buntu"))
-                        {
-                            return PackageManager.Snap;
-                        }
-                        else
-                        {
-                            return PackageManager.APT;
-                        }
-                    case LinuxDistroBase.Fedora or LinuxDistroBase.RHEL:
-                        return PackageManager.DNF;
-                    default:
-                        if(Flatpaks.IsFlatpakInstalled())
-                        {
-                            return PackageManager.Flatpak;
-                        }
+                    if(Snaps.IsSnapInstalled())
+                    {
+                        return PackageManager.Snap;
+                    }
+                    if(HomeBrew.IsHomeBrewInstalled())
+                    {
+                        return PackageManager.Homebrew;
+                    }
 
-                        if(Snaps.IsSnapInstalled())
-                        {
-                            return PackageManager.Snap;
-                        }
-                        if(HomeBrew.IsHomeBrewInstalled())
-                        {
-                            return PackageManager.Homebrew;
-                        }
+                    return PackageManager.NotDetected;
+            }
 
-                        return PackageManager.NotDetected;
-                }
+       }
+       if(OperatingSystem.IsMacOS() || OperatingSystem.IsMacCatalyst()) 
+       {
+            if(HomeBrew.IsHomeBrewInstalled()) 
+            {
+                return PackageManager.Homebrew;
+            }
 
-           }
-           if(OperatingSystem.IsMacOS() || OperatingSystem.IsMacCatalyst()) 
-           {
-                if(HomeBrew.IsHomeBrewInstalled()) 
-                {
-                    return PackageManager.Homebrew;
-                }
-
-                // TODO: Add Mac Ports support here
+            // TODO: Add Mac Ports support here
 
 
-                return PackageManager.NotSupported;
-           }
-           if (OperatingSystem.IsWindows())
-           {
-                if (WindowsAnalyzer.IsAtLeastVersion(WindowsVersion.Win10_v1809) && WindowsAnalyzer.GetWindowsEdition() != WindowsEdition.Server)
-                {
-                    return PackageManager.Winget;
-                }
+            return PackageManager.NotSupported;
+       }
+       if (OperatingSystem.IsWindows())
+       {
+            if (WindowsAnalyzer.IsAtLeastVersion(WindowsVersion.Win10_v1809) && WindowsAnalyzer.GetWindowsEdition() != WindowsEdition.Server)
+            {
+                return PackageManager.Winget;
+            }
 
-                if (Chocolatey.IsChocolateySupported() && Chocolatey.IsChocolateyInstalled())
-                {
-                    return PackageManager.Chocolatey;
-                }
+            if (Chocolatey.IsChocolateySupported() && Chocolatey.IsChocolateyInstalled())
+            {
+                return PackageManager.Chocolatey;
+            }
 
-                return PackageManager.NotSupported;
-           }
+            return PackageManager.NotSupported;
+       }
 
-           throw new PlatformNotSupportedException();
-        }
+       throw new PlatformNotSupportedException();
     }
 }

@@ -20,98 +20,97 @@ using InstallWith.Library.PackageManagers.Models;
 
 using PlatformKit;
 
-namespace InstallWith.Library.PackageManagers
-{
+namespace InstallWith.Library.PackageManagers;
+
 
 // ReSharper disable once ClassNeverInstantiated.Global
-    public static class Flatpaks
+public static class Flatpaks
+{
+    
+    /// <summary>
+    /// Platforms Supported On: Linux and FreeBsd.
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="PlatformNotSupportedException"></exception>
+    [SupportedOSPlatform("linux")]
+    [SupportedOSPlatform("freebsd")]
+    public static IEnumerable<AppModel> GetInstalled()
     {
-        
-        /// <summary>
-        /// Platforms Supported On: Linux and FreeBsd.
-        /// </summary>
-        /// <returns></returns>
-        /// <exception cref="PlatformNotSupportedException"></exception>
-        [SupportedOSPlatform("linux")]
-        [SupportedOSPlatform("freebsd")]
-        public static IEnumerable<AppModel> GetInstalled()
+        if (OperatingSystem.IsLinux() || OperatingSystem.IsFreeBSD())
         {
-            if (OperatingSystem.IsLinux() || OperatingSystem.IsFreeBSD())
+            List<AppModel> apps = new List<AppModel>();
+
+            if (IsFlatpakInstalled())
             {
-                List<AppModel> apps = new List<AppModel>();
+                string[] flatpakResults = CommandRunner.RunCommandOnLinux("flatpak list --columns=name")
+                .Split(Environment.NewLine);
 
-                if (IsFlatpakInstalled())
+                string installLocation = CommandRunner.RunCommandOnLinux("flatpak --installations");
+
+                foreach (string flatpak in flatpakResults)
                 {
-                    string[] flatpakResults = CommandRunner.RunCommandOnLinux("flatpak list --columns=name")
-                    .Split(Environment.NewLine);
-
-                    string installLocation = CommandRunner.RunCommandOnLinux("flatpak --installations");
-
-                    foreach (string flatpak in flatpakResults)
-                    {
-                        apps.Add(new AppModel(flatpak, installLocation));
-                    }
-
-                    return apps.ToArray();
+                    apps.Add(new AppModel(flatpak, installLocation));
                 }
 
-                apps.Clear();
                 return apps.ToArray();
             }
 
-            throw new PlatformNotSupportedException();
+            apps.Clear();
+            return apps.ToArray();
         }
 
-        /// <summary>
-        /// Determines whether the Flatpak package manager is installed or not.
-        /// </summary>
-        /// <returns></returns>
-        [SupportedOSPlatform("linux")]
-        [SupportedOSPlatform("freebsd")]
-        public static bool IsFlatpakInstalled()
+        throw new PlatformNotSupportedException();
+    }
+
+    /// <summary>
+    /// Determines whether the Flatpak package manager is installed or not.
+    /// </summary>
+    /// <returns></returns>
+    [SupportedOSPlatform("linux")]
+    [SupportedOSPlatform("freebsd")]
+    public static bool IsFlatpakInstalled()
+    {
+        if (OperatingSystem.IsLinux() || OperatingSystem.IsFreeBSD())
         {
-            if (OperatingSystem.IsLinux() || OperatingSystem.IsFreeBSD())
+            try
             {
-                try
+                string[] flatpakTest = CommandRunner.RunCommandOnLinux("flatpak --version").Split(' ');
+                
+                if (flatpakTest[0].Contains("Flatpak"))
                 {
-                    string[] flatpakTest = CommandRunner.RunCommandOnLinux("flatpak --version").Split(' ');
-                    
-                    if (flatpakTest[0].Contains("Flatpak"))
-                    {
-                        Version.Parse(flatpakTest[1]);
+                    Version.Parse(flatpakTest[1]);
 
-                        return true;
-                    }
-                }
-                catch
-                {
-                    return false;
-                }
-
-                return false;
-            }
-
-            throw new PlatformNotSupportedException();
-        }
-
-        /// <summary>
-        /// Determines whether a flatpak package is installed.
-        /// </summary>
-        /// <param name="packageName"></param>
-        /// <returns></returns>
-        [SupportedOSPlatform("linux")]
-        [SupportedOSPlatform("freebsd")]
-        public static bool IsPackageInstalled(string packageName)
-        {
-            foreach (AppModel app in GetInstalled())
-            {
-                if (app.ExecutableName.Equals(packageName))
-                {
                     return true;
-                }       
+                }
+            }
+            catch
+            {
+                return false;
             }
 
             return false;
         }
+
+        throw new PlatformNotSupportedException();
+    }
+
+    /// <summary>
+    /// Determines whether a flatpak package is installed.
+    /// </summary>
+    /// <param name="packageName"></param>
+    /// <returns></returns>
+    [SupportedOSPlatform("linux")]
+    [SupportedOSPlatform("freebsd")]
+    public static bool IsPackageInstalled(string packageName)
+    {
+        foreach (AppModel app in GetInstalled())
+        {
+            if (app.ExecutableName.Equals(packageName))
+            {
+                return true;
+            }       
+        }
+
+        return false;
     }
 }
