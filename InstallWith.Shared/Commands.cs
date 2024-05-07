@@ -17,8 +17,8 @@
 using System.Text.Json;
 
 using InstallWith.Library.Enums;
+using InstallWith.Library.Models;
 using InstallWith.Library.PackageManagers;
-using InstallWith.Library.PackageManagers.Models;
 
 namespace InstallWith.Library;
 

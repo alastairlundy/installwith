@@ -14,15 +14,15 @@
    limitations under the License. 
  */
 
-#nullable enable
-namespace InstallWith.Library.PackageManagers.Models;
+
+namespace InstallWith.Library;
 
 public class AppModel
 {
     public AppModel(string executableName, string installLocation)
     {
-        this.ExecutableName = executableName;
-        this.InstallLocation = installLocation;
+        ExecutableName = executableName;
+        InstallLocation = installLocation;
     }
 
     public string? Author { get; set; }
