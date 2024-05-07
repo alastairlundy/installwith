@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\InstallWith.Library\InstallWith.Library.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="Data\apt.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

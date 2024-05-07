@@ -17,7 +17,6 @@
 using System.Text.Json;
 
 using InstallWith.Library.Enums;
-using InstallWith.Library.Models;
 using InstallWith.Library.PackageManagers;
 
 namespace InstallWith.Library;
@@ -109,8 +108,8 @@ public class Commands
                 return ExtractPackageNames(Winget.GetUpdatable());
             case PackageManager.Chocolatey:
                 return ExtractPackageNames(Chocolatey.GetUpdatable());
-            case PackageManager.Snap:
-                return ExtractPackageNames(Snaps.);
+          //  case PackageManager.Snap:
+            //    return ExtractPackageNames(Snaps.Get);
            
         }
     }
