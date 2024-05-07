@@ -18,8 +18,7 @@ using System.Runtime.Versioning;
 using System.Text;
 
 using AlastairLundy.Extensions.System.VersionExtensions;
-
-using InstallWith.Library.PackageManagers.Models;
+using InstallWith.Library.Models;
 
 using PlatformKit;
 using PlatformKit.Windows;

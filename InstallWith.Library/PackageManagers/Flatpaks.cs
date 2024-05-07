@@ -15,8 +15,7 @@
  */
 
 using System.Runtime.Versioning;
-
-using InstallWith.Library.PackageManagers.Models;
+using InstallWith.Library.Models;
 
 using PlatformKit;
 
