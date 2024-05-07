@@ -30,6 +30,8 @@ namespace InstallWith.Library.Enums
         Scoop,
         Chocolatey,
         Winget,
+        Portage,
+        Zypper,
         MacPorts,
         NotSupported,
         NotDetected
