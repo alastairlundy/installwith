@@ -92,6 +92,15 @@ public static class Flatpaks
 
         throw new PlatformNotSupportedException();
     }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    public static bool IsFlatpakSupported()
+    {
+        return OperatingSystem.IsLinux() || OperatingSystem.IsFreeBSD();
+    }
 
     /// <summary>
     /// Determines whether a flatpak package is installed.
