@@ -91,7 +91,7 @@ public class Commands
     }
 
 
-    internal static string[] ExtractPackageNames(IEnumerable<AppModel> apps)
+    internal static IEnumerable<string> ExtractPackageNames(IEnumerable<AppModel> apps)
     {
         List<string> updates = new List<string>();
 
@@ -103,7 +103,7 @@ public class Commands
         return updates.ToArray();
     }
 
-    public string[] GetAvailableUpdates(PackageManager packageManager)
+    public IEnumerable<string> GetAvailableUpdates(PackageManager packageManager)
     {
         switch(packageManager)
         {
