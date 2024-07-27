@@ -35,49 +35,7 @@ public class Commands
         return false;
     }
 
-    internal static string? GetPackageManagerSyntax(PackageManager packageManager, string key)
-    {
-        string path = $"{Environment.CurrentDirectory}{Path.DirectorySeparatorChar}";
 
-        string fileName = "";
-
-       switch(packageManager)
-        {
-            case PackageManager.APT:
-                fileName = "apt.json";
-                break;
-            case PackageManager.AUR:
-                fileName = "aur.json";
-                break;
-            case PackageManager.Chocolatey:
-                fileName = "chocolatey.json";
-                break;
-            case PackageManager.DNF:
-                fileName = "dnf.json";
-                break;
-            case PackageManager.Flatpak:
-                fileName = "flatpak.json";
-                break;
-            case PackageManager.Homebrew:
-                fileName = "homebrew.json";
-                break;
-            case PackageManager.Pacman:
-                fileName = "pacman.json";
-                break;
-            case PackageManager.Snap:
-                fileName = "snap.json";
-                break;
-            case PackageManager.Winget:
-                fileName = "winget.json";
-                break;
-        }
-
-        fileName = fileName.Insert(0, $"{path} ");
-
-        using var doc = JsonDocument.Parse(File.ReadAllText(fileName));
-
-        return doc.RootElement.GetProperty(key).GetString();
-    }
 
     public static void InstallPackage(PackageManager packageManager, string packageName)
     {
