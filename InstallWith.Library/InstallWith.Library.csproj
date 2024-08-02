@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PlatformKit.Software" Version="1.0.0-alpha.3" />
+    <PackageReference Include="PlatformKit.Software" Version="1.0.0-alpha.4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,7 +44,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Internal\Exceptions\" />
+    <Folder Include="Exceptions\" />
   </ItemGroup>
 
 </Project>

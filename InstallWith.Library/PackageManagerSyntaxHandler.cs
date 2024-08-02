@@ -18,9 +18,8 @@ using System;
 using System.IO;
 using System.Text.Json;
 
-using InstallWith.Library.Internal.Exceptions;
-
 using PlatformKit.Software.Enums;
+using PlatformKit.Software.Exceptions;
 
 namespace InstallWith.Library;
 
@@ -67,6 +66,7 @@ public class PackageManagerSyntaxHandler
 
         if (fileName.Equals(""))
         {
+            throw new PackageManagerNotSupportedException(packageManager.ToString());
         }
 
         fileName = fileName.Insert(0, $"{path} ");

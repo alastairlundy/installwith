@@ -14,6 +14,7 @@
    limitations under the License. 
  */
 
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 
@@ -49,30 +50,60 @@ public class Commands
     }
 
 
-    internal static IEnumerable<string> ExtractPackageNames(IEnumerable<AppModel> apps)
-    {
-        List<string> updates = new List<string>();
-
-        foreach (AppModel app in apps)
-        {
-            updates.Add(app.ExecutableName);
-        }
-
-        return updates.ToArray();
-    }
-
     public IEnumerable<string> GetAvailableUpdates(PackageManager packageManager)
     {
-        switch(packageManager)
+        if (OperatingSystem.IsWindows())
         {
-            case PackageManager.Winget:
-                return ExtractPackageNames(Winget.GetUpdatable());
-            case PackageManager.Chocolatey:
-                return ExtractPackageNames(Chocolatey.GetUpdatable());
-          //  case PackageManager.Snap:
-            //    return ExtractPackageNames(Snaps.Get);
-           
+            switch (packageManager)
+            {
+                case PackageManager.Winget:
+                    Winget winget = new Winget();
+                    return ExtractPackageNames(winget.GetUpdatable());
+                case PackageManager.Chocolatey:
+                    Chocolatey chocolatey = new Chocolatey();
+                    return ExtractPackageNames(chocolatey.GetUpdatable());
+            }
         }
+        if (OperatingSystem.IsLinux())
+        {
+            switch (packageManager)
+            {
+                case PackageManager.Snap:
+                    Snap snap = new Snap();
+                    return ExtractPackageNames(snap.GetUpdatable());
+                case PackageManager.Flatpak:
+                    Flatpak flatpak = new Flatpak();
+                    return ExtractPackageNames(flatpak.GetUpdatable());
+                case PackageManager.Homebrew:
+                    HomeBrew homeBrew = new HomeBrew();
+                    return ExtractPackageNames(homeBrew.GetUpdatable());
+            }
+        }
+
+        if (OperatingSystem.IsFreeBSD())
+        {
+            switch (packageManager)
+            {
+                case PackageManager.Snap:
+                    Snap snap = new Snap();
+                    return ExtractPackageNames(snap.GetUpdatable());
+                case PackageManager.Homebrew:
+                    HomeBrew homeBrew = new HomeBrew();
+                    return ExtractPackageNames(homeBrew.GetUpdatable());
+            }
+        }
+
+        if (OperatingSystem.IsMacOS() || OperatingSystem.IsMacCatalyst())
+        {
+            switch (packageManager)
+            {
+                case PackageManager.Homebrew:
+                    HomeBrew homeBrew = new HomeBrew();
+                    return ExtractPackageNames(homeBrew.GetUpdatable());
+            }
+        }
+
+        throw new PlatformNotSupportedException();
     }
 
     public static void UpdatePackageSources(PackageManager packageManager)
